@@ -7,7 +7,7 @@ class Particle{
         this.gravity = 0.1;
         this.fac = random(0.3,1); //velocity reduction per bounce: 1 is no reduction
 
-
+ 
         this.maxSpeed = random(-4,4);
         this.speedX = this.maxSpeed;
         this.speedY = 0;

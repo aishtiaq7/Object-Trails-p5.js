@@ -5,11 +5,17 @@ class Particle{
         this.r = 25;
 
         this.gravity = 0.1;
-        this.fac = 0.6; //velocity reduction per bounce
+        this.fac = random(0.3,1); //velocity reduction per bounce: 1 is no reduction
 
-        this.maxSpeed = 4;
+
+        this.maxSpeed = random(-4,4);
         this.speedX = this.maxSpeed;
         this.speedY = 0;
+
+        //colors
+        this.colorR = random(0,255);
+        this.colorG = random(0,255);
+        this.colorB = random(0,255);
     }
 
     update(){
@@ -43,7 +49,8 @@ class Particle{
     }
 
     show(){
-        fill(255,23,1);
+
+        fill(this.colorR,this.colorG,this.colorB);
         ellipse(this.x,this.y,this.r,this.r);
     }
 }

@@ -5,9 +5,9 @@ class Particle{
         this.r = 25;
 
         this.gravity = 0.1;
-        this.fac = 0.8;
+        this.fac = 0.6; //velocity reduction per bounce
 
-        this.maxSpeed = 2;
+        this.maxSpeed = 4;
         this.speedX = this.maxSpeed;
         this.speedY = 0;
     }
@@ -24,7 +24,7 @@ class Particle{
         } 
 
         // y - boundaries
-        if (this.y>= height){
+        if ((this.y) >= height){
             this.speedY *= -this.fac;
             // this.speedY *= -1;
 
@@ -40,25 +40,33 @@ class Particle{
 
         this.speedY += this.gravity;
         this.y += this.speedY;
-
     }
 
     show(){
+        fill(255,23,1);
         ellipse(this.x,this.y,this.r,this.r);
     }
 }
+// ******************************************************
 
-var particle; 
+var particles =[]; 
 function setup() {
     createCanvas(400, 400);
 
-    particle = new Particle(30, 100);
+    particles.push(new Particle(30, 100));
 }
 
 function draw() {
     background(0, 0, 0);
-    particle.update();
-    particle.show();
+    
+    if(mouseIsPressed){
+        particles.push(new Particle(mouseX, mouseY));
+    }
+    
+    particles.forEach(particle =>{
+        particle.update();
+        particle.show();
+    })
 
 
 }

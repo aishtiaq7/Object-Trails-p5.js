@@ -7,6 +7,7 @@ class Particle{
         this.gravity = 0.1;
         this.fac = random(0.3,1); //velocity reduction per bounce: 1 is no reduction
 
+        this.history = [];
  
         this.maxSpeed = random(-4,4);
         this.speedX = this.maxSpeed;
@@ -40,6 +41,11 @@ class Particle{
             this.y = 0;
         } 
         
+        //trails
+        if(this.history.length > 100){
+            this.history.splice(0,1);
+        }
+        this.history.push(createVector(this.x,this.y));
 
         //updating position:
         this.x += this.speedX;
@@ -50,6 +56,12 @@ class Particle{
 
     show(){
 
+        noStroke();
+        this.history.forEach(vector =>{
+            ellipse(vector.x, vector.y, 20,20);
+        })
+
+        
         fill(this.colorR,this.colorG,this.colorB);
         ellipse(this.x,this.y,this.r,this.r);
     }
